@@ -1,9 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import MarketLogo from "../asset/marker-red.png";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
-function AddListForm() {
+const customIcon = new L.Icon({
+  iconUrl: MarketLogo,
+  iconSize: [20, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
+const MapShow = () => {
+  const [newMarker, setNewMarker] = useState(null);
+
+  // Event handler for adding a new marker
+  const handleMapClick = (e) => {
+    console.log(e.latlng);
+    const { lat, lng } = e.latlng;
+    setNewMarker({ latitude: lat, longitude: lng });
+  };
   const [name, setName] = useState("");
 
   const handleAddList = (name) => {
@@ -38,7 +57,6 @@ function AddListForm() {
     handleAddList(name);
     setName("");
   };
-
   return (
     <div className="container mx-auto p-4 max-w-md">
       <ToastContainer />
@@ -70,8 +88,43 @@ function AddListForm() {
           </div>
         </div>
       </form>
+      <div className="relative h-[40vh]">
+        <div
+          style={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+            bottom: "0",
+            left: "0",
+          }}
+        >
+          <MapContainer
+            center={[36.2880443, 59.6157432]}
+            zoom={12}
+            style={{ height: "100%" }}
+            whenReady={(map) => {
+              console.log(map);
+              map.target.on("click", function (e) {
+                handleMapClick(e);
+              });
+            }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution={null}
+              attributionControl={false}
+            />
+            {newMarker && (
+              <Marker
+                position={[newMarker.latitude, newMarker.longitude]}
+                icon={customIcon}
+              ></Marker>
+            )}
+          </MapContainer>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default AddListForm;
+export default MapShow;
