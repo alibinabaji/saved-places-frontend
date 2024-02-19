@@ -1,5 +1,5 @@
 {
-  "name": "favorite-places-frontend",
+  "name": "saved-places-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node ../favorite-places-backend/server.js",
+    "start": "node ../saved-places-backend/server.js",
     "client": "react-scripts start",
     "dev": "concurrently \"npm start\" \"npm run client\"",
     "build": "react-scripts build",

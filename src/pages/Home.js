@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import List from "../components/List";
-import AddListForm from "../components/AddListForm";
 import MapShow from "../components/MapShow";
 import { useLocationContext } from "../LocationContext";
 import { Link } from "react-router-dom";
@@ -38,7 +37,7 @@ function Home() {
                 <h2 className="text-xl font-semibold">Lists</h2>
                 <button
                   type="submit"
-                  className="mt-2 bg-green-500 text-white rounded-md px-2 py-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                  className="mt-2 bg-green-500 text-white rounded-md px-2 py-2 hover:bg-green-600 focus:outline-none focus:bg-green-600"
                 >
                   <Link to="/addList">Add new List</Link>
                 </button>

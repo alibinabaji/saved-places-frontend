@@ -20,7 +20,7 @@ function List({ list }) {
       <div className="flex justify-between items-center my-4">
         <h2 className="text-xl font-semibold">{list.name}</h2>
         <div>
-          <Link to="addLocMap">Add New</Link>
+        <Link to={`addLocMap/${list.id}`}>Add Place</Link>
         </div>
       </div>
       {showLocs && (

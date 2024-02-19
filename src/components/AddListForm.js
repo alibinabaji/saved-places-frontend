@@ -22,9 +22,8 @@ function AddListForm() {
       })
       .then((data) => {
         toast.success("List created successfully");
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 1000);
+        window.location.href = "/";
+
       })
       .catch((error) => {
         console.error("Error creating list:", error);
@@ -64,9 +63,11 @@ function AddListForm() {
             </button>
           </div>
           <div className="basis-1/2 p-2">
+          <Link to="/">
             <button className="mt-2 bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 focus:outline-none focus:bg-red-600 w-full">
-              <Link to="/addLocMap">Back</Link>
+             Back
             </button>
+            </Link>
           </div>
         </div>
       </form>

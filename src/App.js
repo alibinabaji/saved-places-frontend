@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addList" element={<AddListForm />} />
-        <Route path="/addLocMap" element={<AddLocMap />} />
+        <Route path="/addLocMap/:listId" element={<AddLocMap />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
