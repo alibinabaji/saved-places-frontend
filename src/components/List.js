@@ -3,6 +3,7 @@ import Location from "./Location";
 import { Link } from "react-router-dom";
 
 function List({ list }) {
+  console.log(list)
   const [locations, setLocations] = useState([]);
   const [showLocs, setShowLocs] = useState(false);
 

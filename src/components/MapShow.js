@@ -12,14 +12,6 @@ const customIcon = new L.Icon({
 });
 
 const MapShow = ({ location }) => {
-  const [newMarker, setNewMarker] = useState(null);
-
-  // Event handler for adding a new marker
-  const handleMapClick = (e) => {
-    console.log(e.latlng);
-    const { lat, lng } = e.latlng;
-    setNewMarker({ latitude: lat, longitude: lng });
-  };
 
   return (
     <div
@@ -35,26 +27,12 @@ const MapShow = ({ location }) => {
         center={[location.latitude, location.longitude]}
         zoom={12}
         style={{ height: "100%" }}
-        whenReady={(map) => {
-          console.log(map);
-          map.target.on("click", function (e) {
-            handleMapClick(e);
-          });
-        }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution={null}
           attributionControl={false}
         />
-        {newMarker && ( // Render the new marker if it exists
-          <Marker
-            position={[newMarker.latitude, newMarker.longitude]}
-            icon={customIcon}
-          >
-            <Popup>New Marker</Popup>
-          </Marker>
-        )}
         <Marker
           position={[location.latitude, location.longitude]}
           icon={customIcon}

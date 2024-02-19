@@ -11,10 +11,11 @@ export const LocationProvider = ({ children }) => {
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: 0,
     longitude: 0,
+    address: ''
   });
 
-  const setLocation = (latitude, longitude) => {
-    setSelectedLocation({ latitude, longitude });
+  const setLocation = (latitude, longitude, address) => {
+    setSelectedLocation({ latitude, longitude, address });
   };
 
   return (

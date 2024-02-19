@@ -16,7 +16,31 @@ const customIcon = new L.Icon({
 
 const MapShow = () => {
   const [newMarker, setNewMarker] = useState();
+  const [address, setAddress] = useState();
   const { listId } = useParams();
+
+  
+  useEffect(() => {
+    const apiKey = 'service.e580062a2e334635ae16723a01d1b126';
+    const url = `https://api.neshan.org/v5/reverse?lat=${newMarker?.latitude}&lng=${newMarker?.longitude}`;
+  
+    fetch(url, {
+      headers: {
+        'Api-Key': apiKey,
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setAddress(data.formatted_address)
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });  }, [newMarker]);
 
 
   const handleMapClick = (e) => {
@@ -31,7 +55,7 @@ const MapShow = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, listId, latitude: newMarker.latitude, longitude: newMarker.longitude }),
+      body: JSON.stringify({ name, listId, latitude: newMarker.latitude, longitude: newMarker.longitude, address:address }),
     })
       .then((data) => {
         toast.success("List created successfully");
@@ -64,6 +88,8 @@ const MapShow = () => {
           placeholder="Enter Location name"
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
         />
+          <span className="my-4 text-center">{address}</span>
+
         <div className="flex flex-wrap">
           <div className="basis-1/2 p-2">
             <button
