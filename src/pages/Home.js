@@ -3,6 +3,7 @@ import List from "../components/List";
 import MapShow from "../components/MapShow";
 import { useLocationContext } from "../LocationContext";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function Home() {
   const [lists, setLists] = useState([]);
@@ -23,7 +24,7 @@ function Home() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   return (
     <div className="container mx-auto p-4 max-w-md">
@@ -57,10 +58,12 @@ function Home() {
                   location={{
                     latitude: selectedLocation.latitude,
                     longitude: selectedLocation.longitude,
+                    address: selectedLocation.address,
                   }}
                 />
               </div>
-              <div className="my-10">
+              <div className="my-4 text-center">{selectedLocation.address}</div>
+              <div className="my-2">
                 <button
                   className="mt-2 bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 focus:outline-none focus:bg-red-600 w-full"
                   onClick={(e) => setLocation(0, 0)}

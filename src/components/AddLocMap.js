@@ -69,7 +69,14 @@ const MapShow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!name.trim()) {
+      toast.error("Please enter location name");
+      return
+    };
+    if (!newMarker){
+      toast.error("Please enter location name");
+      return
+    }
     handleAddList(name);
     setName("");
   };
@@ -88,7 +95,7 @@ const MapShow = () => {
           placeholder="Enter Location name"
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
         />
-          <span className="my-4 text-center">{address}</span>
+          <div className="text-center">{address}</div>
 
         <div className="flex flex-wrap">
           <div className="basis-1/2 p-2">

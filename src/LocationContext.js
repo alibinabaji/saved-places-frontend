@@ -13,7 +13,7 @@ export const LocationProvider = ({ children }) => {
     longitude: 0,
     address: ''
   });
-
+console.log(selectedLocation)
   const setLocation = (latitude, longitude, address) => {
     setSelectedLocation({ latitude, longitude, address });
   };

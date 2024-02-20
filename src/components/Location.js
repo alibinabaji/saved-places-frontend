@@ -5,7 +5,6 @@ function Location({ location }) {
   return (
     <li className="flex justify-between items-center mb-2">
       <span className="mr-2">{location.name}</span>
-      <span className="mr-2 text-xs">{location.address}</span>
       <button
         onClick={() => setLocation(location.latitude, location.longitude, location.address)}
         className="text-blue-700"

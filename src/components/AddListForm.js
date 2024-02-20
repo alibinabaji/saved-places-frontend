@@ -33,7 +33,10 @@ function AddListForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!name.trim()){
+      toast.error("Please enter list name");
+      return
+    };
     handleAddList(name);
     setName("");
   };

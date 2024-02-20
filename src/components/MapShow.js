@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -12,7 +12,6 @@ const customIcon = new L.Icon({
 });
 
 const MapShow = ({ location }) => {
-
   return (
     <div
       style={{

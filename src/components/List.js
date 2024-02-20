@@ -3,7 +3,6 @@ import Location from "./Location";
 import { Link } from "react-router-dom";
 
 function List({ list }) {
-  console.log(list)
   const [locations, setLocations] = useState([]);
   const [showLocs, setShowLocs] = useState(false);
 
@@ -13,13 +12,14 @@ function List({ list }) {
       .then((data) => setLocations(data))
       .catch((error) => console.error("Error fetching locations:", error));
   }, [list.id]);
+  console.log(locations)
   return (
     <div
-      className="bg-white rounded-md shadow-md p-6 my-4"
+      className="bg-white rounded-md shadow-md p-6 my-4 cursor-pointer"
       onClick={(e) => setShowLocs(!showLocs)}
     >
       <div className="flex justify-between items-center my-4">
-        <h2 className="text-xl font-semibold">{list.name}</h2>
+        <h2 className="text-xl font-semibold">{list.name} ({locations.length})</h2>
         <div>
         <Link to={`addLocMap/${list.id}`}>Add Place</Link>
         </div>
